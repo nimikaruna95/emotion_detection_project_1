@@ -1,62 +1,104 @@
-# Emotion Detection using CNN and Streamlit
-A deep learning project for facial emotion recognition using Convolutional Neural Networks (CNNs) trained on the FER-2013 dataset. The system detects emotions from facial images and provides a Streamlit web interface for user interaction.
-----------------------------------------------------------------------------------------------------------------------
+
+# Emotion Detection System using CNN and Streamlit
+
+This project is a deep learning-based Emotion Detection System that uses Convolutional Neural Networks (CNNs) trained on the FER-2013 dataset and is deployed with a user-friendly interface using Streamlit.
+
+---
+
 ## Project Structure
-Emotion_detection/ 
-│ ├── data/ 
-│ ├── fer2013.zip # Original FER-2013 dataset 
-│ ├── fer2013_data/ 
-│ │ ├── train/ # Raw training images 
-│ │ ├── train_detected/ # Face-detected training images 
-│ │ ├── test/ # Raw test images 
-│ │ └── test_detected/ # Face-detected test images 
-│ ├── models/ 
-│ └── emotion_model.pth # Trained CNN model 
-│── app.py # Streamlit app interface 
-├── train.py # CNN model training script 
-├── model.py # CNN architecture 
-├── face_detection.py # Dlib-based face detection preprocessing 
-├── dataset_loader.py # Data loading utilities 
-└── evaluate.py # Model evaluation (accuracy, precision, recall, F1)
------------------------------------------------------------------------------------------------------------------------------------------
-## Getting Started
 
-### 1. Clone the Repository
+```
+Emotion_detection/
+│
+├── data/
+│   ├── fer2013.zip
+│   ├── fer2013_data/
+│   │   ├── train/
+│   │   ├── train_detected/
+│   │   ├── test/
+│   │   └── test_detected/
+│
+├── models/
+│   └── emotion_model.pth
+│
+├── app.py                  ← Streamlit UI
+├── train.py                ← Model training
+├── model.py                ← CNN architecture
+├── face_detection.py       ← Dlib-based face detector
+├── dataset_loader.py       ← Loads and preprocesses data
+└── evaluate.py             ← Model evaluation script ✅
+```
+
+---
+
+## Concepts Used
+
+| Concept                 | Description                                           | Where it Appears |
+|--------                 |-------------                                          |------------------|
+| **CNN**                 | For extracting visual features to classify emotion.   | `model.py`, `train.py`, `app.py`, `evaluate.py` |
+| **Streamlit**           | Python framework for building web UIs easily.         | `app.py` |
+| **Face Detection**      | Detect faces in images before classification.         | `face_detection.py` |
+| **FER-2013 Dataset**    | Benchmark dataset with 7 emotions.                    | `dataset_loader.py`, `train.py`, `evaluate.py` |
+| **Image Preprocessing** | Resize, grayscale, normalization.                     | `dataset_loader.py`, `app.py` |
+| **Model Evaluation**    | Accuracy, precision, recall, F1 score.                | `evaluate.py`, `app.py` |
+| **PyTorch**             | Deep learning framework.                              | All model-related files |
+
+
+---
+
+## Files Explained
+
+### `app.py`
+- Streamlit web interface
+- Upload image and predict emotion
+- Calls model, preprocessing, evaluation functions
+
+### `train.py`
+- Defines training loop
+- Trains CNN using FER-2013 dataset
+- Saves model to `models/emotion_model.pth`
+
+### `model.py`
+- Contains the CNN architecture
+- 3 Conv layers + MaxPool + FC layers
+- Output: 7 emotion classes
+
+### `face_detection.py`
+- Uses Dlib to detect and crop faces
+- Saves new dataset with cropped face regions
+
+### `evaluate.py`
+- Evaluates model using precision, recall, F1, accuracy
+- Prints classification report
+
+### `dataset_loader.py`
+- Prepares dataset using PyTorch `ImageFolder`
+- Applies preprocessing (resize, grayscale, normalize)
+
+---
+
+## How to Run
+
 ```bash
-git clone https://github.com/your-username/emotion-detection
-cd emotion-detection
------------------------------------------------------------------------------------------------------------------------------------------
-### 2. Install Dependencies
+# Step 1: Install dependencies
 pip install -r requirements.txt
--------------------------------------
-Main libraries:
--torch, torchvision
--opencv-python
--dlib
--numpy, PIL, sklearn
--streamlit
-Note: For dlib, you may need CMake installed on your system.
---------------------------------------------------------------
-Dataset
-Uses FER-2013, a labeled dataset of 48x48 grayscale facial images across 7 emotion categories:
-['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
---------------------------------------------------------------------
-Structure:
-Organize dataset folders like this:
-fer2013_data/
-├── train/
-│   ├── Angry/
-│   ├── Happy/
-│   ...
-├── test/
-│   ├── Angry/
-│   ├── Happy/
-│   ...
-----------------------------------------------------------------------------------------------------------------------------------------
-Preprocessing
-Run the face detection step to crop and align faces:
-python face_detection.py
-This uses dlib to detect and save aligned facial regions in:
--train_detected/
--test_detected/
 
+# Step 2: Train the model
+python train.py
+
+# Step 3: Run the web app
+streamlit run app.py
+```
+
+---
+
+## 📊 Supported Emotions
+- Angry
+- Disgust
+- Fear
+- Happy
+- Neutral
+- Sad
+- Surprise
+
+---
