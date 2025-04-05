@@ -1,1 +1,4 @@
-# emotion_detection_project_1
+# Emotion Detection using CNN and Streamlit
+A deep learning project for facial emotion recognition using Convolutional Neural Networks (CNNs) trained on the FER-2013 dataset. The system detects emotions from facial images and provides a Streamlit web interface for user interaction.
+## Project Structure
+Emotion_detection/ │ ├── data/ │ ├── fer2013.zip # Original FER-2013 dataset │ ├── fer2013_data/ │ │ ├── train/ # Raw training images │ │ ├── train_detected/ # Face-detected training images │ │ ├── test/ # Raw test images │ │ └── test_detected/ # Face-detected test images │ ├── models/ │ └── emotion_model.pth # Trained CNN model │ ├── app.py # Streamlit app interface ├── train.py # CNN model training script ├── model.py # CNN architecture ├── face_detection.py # Dlib-based face detection preprocessing ├── dataset_loader.py # Data loading utilities └── evaluate.py # Model evaluation (accuracy, precision, recall, F1)
