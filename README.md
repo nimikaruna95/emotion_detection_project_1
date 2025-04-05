@@ -21,12 +21,12 @@ Emotion_detection/
 ├── models/
 │   └── emotion_model.pth
 │
-├── app.py                  ← Streamlit UI
+├── app.py                  ← Streamlit UserInterface
 ├── train.py                ← Model training
 ├── model.py                ← CNN architecture
 ├── face_detection.py       ← Dlib-based face detector
 ├── dataset_loader.py       ← Loads and preprocesses data
-└── evaluate.py             ← Model evaluation script ✅
+└── evaluate.py             ← Model evaluation 
 ```
 
 ---
@@ -92,7 +92,7 @@ streamlit run app.py
 
 ---
 
-## 📊 Supported Emotions
+## Emotions
 - Angry
 - Disgust
 - Fear
