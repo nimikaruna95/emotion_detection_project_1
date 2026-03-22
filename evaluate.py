@@ -36,7 +36,7 @@ def evaluate_model(model, dataloader, device):
     f1 = f1_score(y_true, y_pred, average='weighted', zero_division=0)
 
     # Create results folder
-    os.makedirs("results", exist_ok=True)
+    os.makedirs("results1", exist_ok=True)
 
     # Confusion Matrix
     cm = confusion_matrix(y_true, y_pred)
@@ -51,12 +51,12 @@ def evaluate_model(model, dataloader, device):
     plt.tight_layout()
 
     # Save confusion matrix
-    plt.savefig("results/confusion_matrix.png")
+    plt.savefig("results1/confusion_matrix.png")
 
     plt.close()
 
     # Save metrics
-    with open("results2/metrics.txt", "w") as f:
+    with open("results1/metrics.txt", "w") as f:
 
         f.write("Model Evaluation Metrics\n")
         f.write("-------------------------\n")
@@ -91,4 +91,4 @@ if __name__ == "__main__":
     for metric, value in results.items():
         print(f"{metric.capitalize()}: {value:.4f}")
 
-    print("\nSaved results in 'results/' folder")
+    print("\nSaved results in 'results1/' folder")
